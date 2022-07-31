@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>4: Links; 
+            Links are the defining feature of the web because they allow you to move from one web page to another — enabling the very idea of browsing or surfing.
+        </title> 
+    </head>
+    <body>
+        <h3 id = "top">
+            Creating links between pages 
+        </h3>
+        <p>Create a hypertext link to my GitHub: <a href="https://github.com/Alice-2096?tab=repositories"> My GitHub</a> (open in the current window)</p>
+        <p>If you want to open a website in a <strong>new window</strong>, then use the <strong>target</strong> attribute on the opening <a> tag. 
+            <br/ >
+            The value of this attribute should be <strong>_blank</strong>.
+            <br/ > 
+            <a href="http://www.imdb.com" target="_blank"> Internet Movie Database</a> (opens in new window)</p>
+        <h3 id = "mid-up">
+            Linking to other sites (absolute and relative URL)
+        </h3>
+        <ul>
+            <li>An absolute URL starts with
+                the domain name for that site, 
+                and can be followed by the path to a specific page.
+            </li>
+            <li>
+                When you are linking to other pages within the same site, you do not need to specify the domain name in the URL. 
+                You can use a shorthand known as a relative URL.
+            </li>
+            <li>
+                If all the pages of the site are in the same folder, then the value of the href attribute is just the name of the file.
+            </li>
+        </ul>
+        <p>Here is a <a href = "lists.html">link</a>to a html file in my current folder</p>
+        <h3 id = "mid-down">
+            Email links
+            <br/ ><br/ ><br/ ><br/ ><br/ ><br/ ><br/ ><br/ ><br/ ><br/ >
+        </h3>
+        <h4> the value of the href attribute starts with mailto: and is followed by the email address you want the email to be sent to</h4>
+        Please <a href="mailto:xj2096@nyu.edu"> email </a> me if you have any questions. 
+        <h3 id = "bottom">Linking to a specific part oF the same page</h3>
+        <h4> header elements in this example have been given id attributes that identify those sections of the page.</h4>
+        <p><a href="#top">Link</a> to the first section of the page using <strong>#section_name</strong></p>
+        <p>we can use a similar technique to link to a specific part of another website</p>
+    </body>
+</html>
