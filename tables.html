@@ -1,0 +1,66 @@
+<html>
+    <body>
+        <h3>basic table format</h3>
+        <table> 
+            <thead> <!--The headings of the table should sit inside the <thead> element.-->
+                <tr> 
+                    <th></th> 
+                    <th scope = "col">A</th>
+                    <!--You can use the scope attribute on the <th> element to indicate whether it is a heading for a column or a row. -->
+                    <th scope="col"> B</th>
+                </tr>
+            </thead>
+            <tbody> <!--The body should sit inside the <tbody> element.-->
+                <tr> <!--You indicate the start of each row using the opening <tr> tag.
+                    tr stands for table row-->
+                    <th scope="row"> C</th>
+                    <!--Each cell of a table is represented using a <td> element. td stands for table data-->
+                    <td>15</td> 
+                    <td>30</td>
+                </tr> 
+    
+                <tr> <!--the second row-->
+                    <th scope="row"> D</th>
+                    <td>60</td> 
+                    <td>45</td>
+                </tr> 
+                <tr> <!--the third row-->
+                    <th scope="row"> E</th>
+                    <td>90</td> 
+                    <td>90</td>
+                </tr>
+            </tbody>
+        </table>
+    
+
+        <table> 
+            <thead>
+                <tr>
+                    <th></th> 
+                    <th>9am</th> 
+                    <th>10am</th> 
+                    <th>11am</th> 
+                    <th>12am</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Monday</th>
+                    <td colspan="2">Geography</td> 
+                    <td>Math</td>
+                    <td>Art</td>
+                </tr> 
+                <tr>
+                    <th>Tuesday</th>
+                    <!--use rowspan or colspan attribute on td to indicate how many cols or rows should the cell run across -->
+                    <td colspan="3">Gym</td> <td>Home Ec</td>
+                </tr>
+            </tbody>
+            <tfoot> 
+                <tr>
+                    <td colspan="4">this is the footer of the table </td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>

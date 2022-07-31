@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<title>forms</title>
+	</head>
+	<body>
+        <h3>text input </h3>
+		<form action="http://www.example.com/login.php" method="get">
+			<p>Username:
+				<input type="text" name="username" size="15" maxlength="30" />
+			</p>
+            <p>password: 
+                <input type="text" name="password" size="15" maxlength="30" />
+            </p>
+		</form>
+        <form action="http://www.example.com/comments.php"> <p>What did you think of this gig?</p>
+            <textarea name="comments" cols="20" rows="4">
+                    Enter your comments...
+            </textarea> 
+        </form>
+
+        <h3>
+            Radio Button
+        </h3>
+        <form action="http://www.example.com/profile.php"> 
+            <p>Please select your favorite genre:
+                <br />
+                <input type="radio" name="genre" value="rock" checked="checked" /> 
+                    <!--The checked attribute can be used to indicate which value (if any) should be selected when the page loads. 
+                        The value of this attribute is checked. 
+                        Only one button in a group should use this attribute.-->
+                    Rock
+                <input type="radio" name="genre" value="pop" />
+                    Pop
+                <input type="radio" name="genre" value="jazz" />
+                    Jazz
+            </p> 
+        </form>
+
+        <h3>Checkbox</h3>
+        <form action="http://www.example.com/profile.php"> 
+            <p>Please select your favorite music service(s):
+                <br />
+                <input type="checkbox" name="service" value="itunes" checked="checked" /> iTunes 
+                <input type="checkbox" name="service" value="lastfm" /> Last.fm
+                <input type="checkbox" name="service" value="spotify" /> Spotify 
+            </p>
+        </form>
+
+        <h3>
+            dropdown list 
+        </h3>
+        <p>Dropdown list works better if 
+            <li>  users need to see all options at a glance</li>
+            <li>there is a very long list of options (such as a list of countries)</li>
+        </p>
+        <!--The <select> element is used to create a drop down list box. It contains two or more <option> elements.-->
+        <form action="http://www.example.com/profile.php"> 
+            <p> What device do you listen to music on?</p> 
+            <select name="devices">
+                <option value="ipod">iPod</option> 
+                <option value="radio">Radio</option> 
+                <option value="computer">Computer</option>
+            </select>
+        </form>
+
+        <h3>File input box</h3>
+        <form action="http://www.example.com/upload.php" method="post">
+            <p>Upload your song in MP3 format:</p>
+            <input type="file" name="user-song" />
+            <br /> <br />
+            <input type="submit" value="Upload" />
+            <br />
+            <p> Join our email list! </p>
+            <label> Your email: <input type="text" name="email" /> </label> 
+            <input type="submit" name="subscribe" value="Subscribe"/> 
+        </form>
+    
+        <h3>
+            Grouping forms
+        </h3>
+        <fieldset>
+            <legend>Contact details</legend> 
+            <label>Email:<br />
+            <input type="text" name="email" /></label><br /> 
+            <label>Mobile:<br />
+            <input type="text" name="mobile" /></label><br /> 
+            <label>Telephone:<br />
+            <input type="text" name="telephone" /></label>
+        </fieldset>
+        
+	</body>
+</html>
