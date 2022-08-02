@@ -5,8 +5,12 @@ const color = document.querySelector(".color");  // returns the first Element wi
 //sets up a function that will be called whenever the button is clicked 
 btn.addEventListener('click', function(){
     // get a random number between 0 and 3 
-    const randomNumber = 2; 
+    const randomNumber = getRandomNumber(); 
+    console.log(randomNumber); 
     document.body.style.backgroundColor = colors[randomNumber]; 
     color.textContent = colors[randomNumber]; 
 });
 
+function getRandomNumber(){
+    return Math.floor(Math.random() * colors.length); 
+}
