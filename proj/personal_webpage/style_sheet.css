@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(255, 251, 228);
+}
+
+header, .main, footer {
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+#name {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 45px;
+    text-align: center;
+}
+.header-btn {
+    width: 20%;
+}
+
+#selfie {
+    flex: 2; 
+}
+
+#self-intro{
+    flex: 3;
+}
+
+#self {
+    width: 90%;
+}
