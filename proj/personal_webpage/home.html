@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style_sheet.css"/>
     <title>Document</title>
 </head>
-<script></script>
+
 <body>
     <div>
         <header>
@@ -16,37 +16,55 @@
             </div>
             <div class="flex-container">
                 <div class="header-btn">
-                    <a href="">Home</a>
+                    <a href="home.html">Home</a>
                 </div>
                 <div class="header-btn">
-                    <a href="">Journals</a>
+                    <a href="journal.html">Journals</a>
                 </div>
                 <div class="header-btn">
-                    <a href="">Contact</a> 
+                    <a href="contact.html">Contact</a> 
                 </div>
             </div>
         </header>
         <div class="main">
+
             <div class="flex-container">
-                <div id="selfie">
-                    <img id='self' src="imgs/selfie.png">
+
+                <div id="images">
+                    <div id="img-left">
+                        <img class="cat-left" id = 'first-cat' src="imgs/cat1.jpg">
+                        <img class="cat-right" src="imgs/cat2.png">
+                        <img class="cat-left" src="imgs/cat1.jpg">
+                        <img class="cat-right" src="imgs/cat2.png">
+                        
+                    </div>
+                    <div id="selfie">
+                        <img id='self' src="imgs/selfie.png">
+                    </div>
+                    <div id="img-right">
+                        <img class="cat-right" src="imgs/cat2.png">
+                        <img class="cat-left" src="imgs/cat1.jpg">
+                        <img class="cat-right" src="imgs/cat2.png">
+                        <img class="cat-left" src="imgs/cat1.jpg">
+                    </div>
                 </div>
+
                 <div id="self-intro">
                     <h3>Hi! I am Alice Jiang. </h3>
                     <p>
                         I am a PhD student of 
                         philosophy at New York University. I live in 
                         New Jersey with my boyfriend, my dog BenBen, 
-                        and my two cats Umbra and Shadowfax. 
+                        and two cats Umbra and Shadowfax. 
                     </p>
                 </div>
             </div>
         </div>
+
         <footer>
-            <p>
-            </p>
+            <p id="foo"> &copy 2022 All Rights Reserved </p>
         </footer>
     </div>
 </body>
-
+<script src="js/cat.js"></script>
 </html>

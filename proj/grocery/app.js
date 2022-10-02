@@ -160,7 +160,7 @@ function setupItems(){
     if (items.length > 0){
         items.forEach(function(item){
             createListItem(item.id, item.value); 
-            
+            container.classList.add('show-container');
         })
     }
 }
