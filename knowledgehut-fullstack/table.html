@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            /* by default, there are gaps around every cells in the table. To overwrite, do the following */
+            border-spacing: 0px;
+        }
+        td {
+            background-color: bisque;
+            border: solid 1px black;
+            padding: 4px;
+        }
+        th {
+            border: solid 1px black; 
+            padding: 4px;
+        }
+    </style>
+
+</head>
+<body>
+    <table> 
+        <!-- each table has two part: head and body -->
+        <thead>
+            <!-- content in "th" will automatically center -->
+            <tr>
+                <th colspan="2">Group Heading</th>
+                <!-- occupy 2 columns -->
+                <th>Testing</th>
+            </tr>
+            <tr>
+                <!-- table headings -->
+                <th>Session</th>  
+                <th>Workshop ID</th>
+                <th>Session Status</th>
+            </tr>  
+        </thead>
+        <tbody>
+            <!-- tr stands for table row -->
+            <tr>
+                <td>Session 15</td>
+                <td>WDC-14486235</td>
+                <td rowspan="3">In Progress</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Session 15</td>
+                <td>WDC-14486235</td>
+            </tr>
+            <tr>
+                <td>WDC-14486235</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>content</th>
+                <th>content</th>
+                <th>content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>content</td>
+                <td rowspan="4">content</td>
+                <td rowspan="4">content</td>
+            </tr>
+            <tr>
+                <td>content</td>
+            </tr>
+            <tr>
+                <td>content</td>
+            </tr>
+            <tr>
+                <td>content</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+

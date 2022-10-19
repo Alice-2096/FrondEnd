@@ -1,0 +1,88 @@
+
+
+* {
+    box-sizing: border-box;
+}
+
+.container, .main-container, .login-container, .login, .sign-in, .create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: black;
+    height: 650px;
+}
+
+.main-container {
+    background-color: rgb(124,182,96);
+    border: 15px solid white; 
+    height: 620px;
+    width: 97%;
+}
+
+.login-container {
+    background-color:white;
+    width: 450px;
+    height: 450px;
+    box-shadow: 0 0 20px rgb(69, 68, 68);
+} 
+
+.login {
+    width: 75%;
+    height: 75%;
+    flex-direction: column; 
+    gap: 15px; 
+    align-items: stretch;
+
+}
+
+.login > * {
+    height: 3rem;
+}
+
+input {
+    background-color: rgb(244,244,244);
+    border: none; 
+    padding-left: 10px;
+}
+
+input::placeholder{
+    color:rgb(159, 156, 156);
+    font-weight: lighter;
+}
+
+.create {
+    background-color: rgb(66,171,93);
+    border: none; 
+    cursor: pointer;
+    color: rgb(245, 241, 241); 
+    font-weight:100;
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+}
+
+.create:hover {
+    background-color:rgb(47, 125, 67);
+    color: white; 
+}
+
+.sign-in {
+    color: rgb(194, 191, 191); 
+    cursor: pointer;
+}
+
+.sign-in a {
+    padding-left: 5px;  
+}
+
+.sign-in a:visited{
+    color: rgb(47, 84, 29);
+    text-decoration: none;
+    
+}
+.sign-in a:link{
+    color: rgb(124,182,96);
+    text-decoration: none;
+}
+
