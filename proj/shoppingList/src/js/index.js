@@ -4,6 +4,7 @@ import {
   removeItem,
   addToCompletedList,
   clearCompleted,
+  bootUp,
 } from './model';
 import { renderShoppingList, renderCompletedList } from './view';
 
@@ -15,20 +16,21 @@ const clearCompletedBtn = document.querySelector('#clear-completed');
 itemInput.addEventListener('keyup', function (evt) {
   if (evt.key === 'Enter') {
     // Add to shopping list
-    addToShoppingList(this.value);
+    addToShoppingList(this.value); //can also do 'evt.target.value' -- refers to the input field
     // Update the view
     renderShoppingList();
     this.value = '';
   }
 });
 
+// Take advantage of event bubbling
 shoppingListDiv.addEventListener('click', function (evt) {
   // Priority
   if (evt.target.parentElement.classList.contains('priority-control')) {
+    //if the user is trying to set the priority of the list
     const priority = evt.target.classList.value;
-    const itemId = evt.target.parentElement.parentElement.getAttribute(
-      'data-id'
-    );
+    const itemId =
+      evt.target.parentElement.parentElement.getAttribute('data-id');
 
     // Set priority
     setPriority(itemId, priority);
@@ -75,3 +77,10 @@ clearCompletedBtn.addEventListener('click', function (evt) {
   clearCompleted();
   renderCompletedList();
 });
+
+// will do this everytime the web page is reloaded
+() => {
+  bootUp;
+  renderShoppingList();
+  renderCompletedList();
+};

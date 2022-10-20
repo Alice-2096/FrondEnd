@@ -117,16 +117,40 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/model.js":[function(require,module,exports) {
+})({"js/storage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clearCompleted = exports.getCompletedList = exports.addToCompletedList = exports.getShoppingList = exports.removeItem = exports.setPriority = exports.addToShoppingList = void 0;
+exports.saveToStore = exports.getFromStore = void 0;
+const saveToStore = function ({
+  shoppingList,
+  completeList
+}) {
+  window.localStorage.setItem('shoppingApp_active', JSON.stringify(shoppingList));
+  window.localStorage.setItem('shoppingApp_completed', JSON.stringify(completeList));
+};
+exports.saveToStore = saveToStore;
+const getFromStore = function () {
+  const getActive = window.localStorage.getItem('shoppingApp_active');
+  const getCompleted = window.localStorage.getItem('shoppingApp_completed');
+  return {
+    getActive: getActive ? JSON.parse(getActive) : [],
+    getCompleted: getCompleted ? JSON.parse(getCompleted) : []
+  };
+};
+exports.getFromStore = getFromStore;
+},{}],"js/model.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setPriority = exports.removeItem = exports.getShoppingList = exports.getCompletedList = exports.clearCompleted = exports.bootUp = exports.addToShoppingList = exports.addToCompletedList = void 0;
+var _storage = require("./storage");
 let shoppingList = [];
 let completedList = [];
-
 const addToShoppingList = item => {
   const itemId = `${parseInt(Math.random() * 100000000)}-${new Date().getTime()}`;
   shoppingList.push({
@@ -134,43 +158,45 @@ const addToShoppingList = item => {
     item,
     priority: 'normal'
   });
+  (0, _storage.saveToStore)({
+    shoppingList,
+    completeList
+  });
 };
-
 exports.addToShoppingList = addToShoppingList;
-
 const setPriority = (itemId, priority) => {
   shoppingList = shoppingList.map(item => {
     if (item.id === itemId) {
-      return { ...item,
+      return {
+        ...item,
         priority
       };
     }
-
+    (0, _storage.saveToStore)({
+      shoppingList,
+      completeList
+    });
     return item;
   });
 };
-
 exports.setPriority = setPriority;
-
 const removeItem = itemId => {
   const confirm = window.confirm('Do you really want to delete this item?');
-
   if (confirm) {
     shoppingList = shoppingList.filter(({
       id
     }) => id !== itemId);
     return true;
   }
-
+  (0, _storage.saveToStore)({
+    shoppingList,
+    completeList
+  });
   return false;
 };
-
 exports.removeItem = removeItem;
-
 const getShoppingList = () => shoppingList;
-
 exports.getShoppingList = getShoppingList;
-
 const addToCompletedList = itemId => {
   const getItem = shoppingList.find(({
     id
@@ -179,24 +205,43 @@ const addToCompletedList = itemId => {
     id
   }) => id !== itemId);
   completedList = [getItem, ...completedList];
+  (0, _storage.saveToStore)({
+    shoppingList,
+    completeList
+  });
 };
-
 exports.addToCompletedList = addToCompletedList;
-
 const getCompletedList = () => completedList;
-
 exports.getCompletedList = getCompletedList;
-
-const clearCompleted = () => completedList = [];
-
+const clearCompleted = () => {
+  completedList = [];
+  (0, _storage.saveToStore)({
+    shoppingList,
+    completeList
+  });
+};
 exports.clearCompleted = clearCompleted;
-},{}],"js/Item.js":[function(require,module,exports) {
+const bootUp = () => {
+  const {
+    active,
+    completed
+  } = (0, _storage.getFromStore)();
+  shoppingList = active;
+  completedList = completed;
+};
+exports.bootUp = bootUp;
+},{"./storage":"js/storage.js"}],"js/Item.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+/**
+ * define a component to be plugged in the HTML file.
+ * As a convention, the name of component files should begin with an uppercase
+ * character.
+ */
 
 const Item = (title, priority = 'normal', id) => {
   return `<div class="item ${priority}" data-id="${id}" draggable="true">
@@ -209,8 +254,7 @@ const Item = (title, priority = 'normal', id) => {
   <div class="remove-btn">REMOVE</div>
 </div>`;
 };
-
-var _default = Item;
+var _default = Item; //export default means that 'Item' is the only function being exported from this file
 exports.default = _default;
 },{}],"js/view.js":[function(require,module,exports) {
 "use strict";
@@ -218,17 +262,14 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderCompletedList = exports.renderShoppingList = void 0;
-
+exports.renderShoppingList = exports.renderCompletedList = void 0;
 var _Item = _interopRequireDefault(require("./Item"));
-
 var _model = require("./model");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 const shoppingListDiv = document.querySelector('.shopping-list');
 const completedDiv = document.querySelector('.completed');
 
+// use 'map' to convert ea ch item in the shopping list to the HTML markup
 const renderShoppingList = () => {
   const domNodes = (0, _model.getShoppingList)().map(({
     item,
@@ -237,11 +278,9 @@ const renderShoppingList = () => {
   }) => {
     return (0, _Item.default)(item, priority, id);
   });
-  shoppingListDiv.innerHTML = domNodes.join('');
+  shoppingListDiv.innerHTML = domNodes.join(''); //join the list of HTML all together
 };
-
 exports.renderShoppingList = renderShoppingList;
-
 const renderCompletedList = () => {
   const domNodes = (0, _model.getCompletedList)().map(({
     item,
@@ -252,15 +291,12 @@ const renderCompletedList = () => {
   });
   completedDiv.innerHTML = domNodes.join('');
 };
-
 exports.renderCompletedList = renderCompletedList;
 },{"./Item":"js/Item.js","./model":"js/model.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _model = require("./model");
-
 var _view = require("./view");
-
 const itemInput = document.querySelector("input[name='itemInput']");
 const shoppingListDiv = document.querySelector('.shopping-list');
 const completedDiv = document.querySelector('.completed');
@@ -268,27 +304,31 @@ const clearCompletedBtn = document.querySelector('#clear-completed');
 itemInput.addEventListener('keyup', function (evt) {
   if (evt.key === 'Enter') {
     // Add to shopping list
-    (0, _model.addToShoppingList)(this.value); // Update the view
-
+    (0, _model.addToShoppingList)(this.value); //can also do 'evt.target.value' -- refers to the input field
+    // Update the view
     (0, _view.renderShoppingList)();
     this.value = '';
   }
 });
+
+// Take advantage of event bubbling
 shoppingListDiv.addEventListener('click', function (evt) {
   // Priority
   if (evt.target.parentElement.classList.contains('priority-control')) {
+    //if the user is trying to set the priority of the list
     const priority = evt.target.classList.value;
-    const itemId = evt.target.parentElement.parentElement.getAttribute('data-id'); // Set priority
+    const itemId = evt.target.parentElement.parentElement.getAttribute('data-id');
 
-    (0, _model.setPriority)(itemId, priority); // Render View
-
+    // Set priority
+    (0, _model.setPriority)(itemId, priority);
+    // Render View
     (0, _view.renderShoppingList)();
-  } // Remove
+  }
 
-
+  // Remove
   if (evt.target.classList.contains('remove-btn')) {
-    const itemId = evt.target.parentElement.getAttribute('data-id'); // If the item is removed, update the view
-
+    const itemId = evt.target.parentElement.getAttribute('data-id');
+    // If the item is removed, update the view
     if ((0, _model.removeItem)(itemId)) {
       (0, _view.renderShoppingList)();
     }
@@ -302,13 +342,12 @@ shoppingListDiv.addEventListener('dragstart', function (evt) {
 });
 completedDiv.addEventListener('drop', function (evt) {
   const itemId = evt.dataTransfer.getData('text/plain');
-
   if (itemId) {
     // Add to completed list
-    (0, _model.addToCompletedList)(itemId); // Update shopping list
-
-    (0, _view.renderShoppingList)(); // Update completed tasks list
-
+    (0, _model.addToCompletedList)(itemId);
+    // Update shopping list
+    (0, _view.renderShoppingList)();
+    // Update completed tasks list
     (0, _view.renderCompletedList)();
   }
 });
@@ -320,11 +359,17 @@ clearCompletedBtn.addEventListener('click', function (evt) {
   (0, _model.clearCompleted)();
   (0, _view.renderCompletedList)();
 });
+
+// will do this everytime the web page is reloaded
+() => {
+  _model.bootUp;
+  (0, _view.renderShoppingList)();
+  (0, _view.renderCompletedList)();
+};
 },{"./model":"js/model.js","./view":"js/view.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
-
 function Module(moduleName) {
   OldModule.call(this, moduleName);
   this.hot = {
@@ -340,37 +385,32 @@ function Module(moduleName) {
   };
   module.bundle.hotData = null;
 }
-
 module.bundle.Module = Module;
 var checkedAssets, assetsToAccept;
 var parent = module.bundle.parent;
-
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53042" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63756" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
     var data = JSON.parse(event.data);
-
     if (data.type === 'update') {
       var handled = false;
       data.assets.forEach(function (asset) {
         if (!asset.isNew) {
           var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-
           if (didAccept) {
             handled = true;
           }
         }
-      }); // Enable HMR for CSS by default.
+      });
 
+      // Enable HMR for CSS by default.
       handled = handled || data.assets.every(function (asset) {
         return asset.type === 'css' && asset.generated.js;
       });
-
       if (handled) {
         console.clear();
         data.assets.forEach(function (asset) {
@@ -384,20 +424,16 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
         location.reload();
       }
     }
-
     if (data.type === 'reload') {
       ws.close();
-
       ws.onclose = function () {
         location.reload();
       };
     }
-
     if (data.type === 'error-resolved') {
       console.log('[parcel] ✨ Error resolved');
       removeErrorOverlay();
     }
-
     if (data.type === 'error') {
       console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
       removeErrorOverlay();
@@ -406,19 +442,17 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
     }
   };
 }
-
 function removeErrorOverlay() {
   var overlay = document.getElementById(OVERLAY_ID);
-
   if (overlay) {
     overlay.remove();
   }
 }
-
 function createErrorOverlay(data) {
   var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID; // html encode message and stack trace
+  overlay.id = OVERLAY_ID;
 
+  // html encode message and stack trace
   var message = document.createElement('div');
   var stackTrace = document.createElement('pre');
   message.innerText = data.error.message;
@@ -426,41 +460,31 @@ function createErrorOverlay(data) {
   overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
   return overlay;
 }
-
 function getParents(bundle, id) {
   var modules = bundle.modules;
-
   if (!modules) {
     return [];
   }
-
   var parents = [];
   var k, d, dep;
-
   for (k in modules) {
     for (d in modules[k][1]) {
       dep = modules[k][1][d];
-
       if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
         parents.push(k);
       }
     }
   }
-
   if (bundle.parent) {
     parents = parents.concat(getParents(bundle.parent, id));
   }
-
   return parents;
 }
-
 function hmrApply(bundle, asset) {
   var modules = bundle.modules;
-
   if (!modules) {
     return;
   }
-
   if (modules[asset.id] || !bundle.parent) {
     var fn = new Function('require', 'module', 'exports', asset.generated.js);
     asset.isNew = !modules[asset.id];
@@ -469,58 +493,45 @@ function hmrApply(bundle, asset) {
     hmrApply(bundle.parent, asset);
   }
 }
-
 function hmrAcceptCheck(bundle, id) {
   var modules = bundle.modules;
-
   if (!modules) {
     return;
   }
-
   if (!modules[id] && bundle.parent) {
     return hmrAcceptCheck(bundle.parent, id);
   }
-
   if (checkedAssets[id]) {
     return;
   }
-
   checkedAssets[id] = true;
   var cached = bundle.cache[id];
   assetsToAccept.push([bundle, id]);
-
   if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
     return true;
   }
-
   return getParents(global.parcelRequire, id).some(function (id) {
     return hmrAcceptCheck(global.parcelRequire, id);
   });
 }
-
 function hmrAcceptRun(bundle, id) {
   var cached = bundle.cache[id];
   bundle.hotData = {};
-
   if (cached) {
     cached.hot.data = bundle.hotData;
   }
-
   if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
     cached.hot._disposeCallbacks.forEach(function (cb) {
       cb(bundle.hotData);
     });
   }
-
   delete bundle.cache[id];
   bundle(id);
   cached = bundle.cache[id];
-
   if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
     cached.hot._acceptCallbacks.forEach(function (cb) {
       cb();
     });
-
     return true;
   }
 }
