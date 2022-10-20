@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .toggle-container {
+            background-color: red;
+            width: 100px;
+            height: 40px;
+            padding: 5px;
+        }
+        .toggle-thumb {
+            width: 30px;
+            height: 30px;
+            background-color: bisque;
+            margin-left: 0px;
+            transition: 1s;
+        } 
+        .toggle-container:hover .toggle-thumb{
+            margin-left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-container">
+        <div class="toggle-thumb">
+        </div>
+    </div>
+</body>
+</html>

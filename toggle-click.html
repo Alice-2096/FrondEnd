@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            box-sizing: border-box;
+            display: inline-block;
+        }
+
+        .toggle-container {
+            background-color: red;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 100px;
+            height: 40px;
+            padding: 5px;
+            transition: 1s;
+            border-radius: 20px;
+        }
+
+        .toggle-thumb {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(34, 34, 44);
+            margin-left: 0;
+            transition: 1s;
+            border-radius: 15px;
+        }
+
+        .check:checked+.toggle-container {
+            background-color: green;
+        }
+
+        .check:checked+.toggle-container .toggle-thumb {
+            margin-left: 60px;
+        }
+
+        .check {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    
+    
+    <!-- <form action="www.facebook.com/save-user">
+        <input type="text">
+        <input type="text">
+        <button>Signup</button>
+    </form>
+
+
+ -->
+
+
+    <input class="check" type="checkbox" id="check-1">
+    <label class="toggle-container" for="check-1">
+        <div class="toggle-thumb"></div>
+    </label>
+
+
+
+
+    <input id="i-agree" type="checkbox">
+    <input id="i-agree-2" type="checkbox">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <label for="i-agree">I agree</label>
+    <label for="i-agree-2">I agree 2</label>
+
+</body>
+
+</html>

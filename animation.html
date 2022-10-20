@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .alert {
+            animation: blink 1s 5 forwards; 
+            /* forwards attribute -- stay in the final state */
+        }
+        @keyframes blink {
+            0% {
+                color: red; 
+            }
+            50% {
+                color: orangered;
+            }
+            75% {
+                color:yellow;
+            }
+            100% {
+                color: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="alert">Alert</h1>
+</body>
+</html>
