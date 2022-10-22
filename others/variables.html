@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* creating common css by creating a class or a global variable  */
+
+        :root {
+            --global-color: red; 
+        }
+        .special {
+            --global-color: blue; 
+        }
+        p {
+            color: var(--global-color);
+        }
+        span,button {
+            background-color: var(--global-color);
+        } 
+        h1 {
+            border: 1px solid var(--global-color);
+        }
+        /* .bg-orange {
+            background-color: var(--global-color);
+        } */
+    
+    </style>
+</head>
+<body>
+    <button>Click Me!</button>
+
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati accusantium excepturi animi temporibus quidem commodi natus ducimus expedita? Iure facere nesciunt asperiores esse quia repellat reiciendis dolores possimus, voluptatum provident.</p>
+    
+    <span>Hello I am a SPAN!</span>
+
+    <p class="special">I want a blue border!</p>
+</body>
+</html>
