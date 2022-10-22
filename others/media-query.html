@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            background-color: aqua;
+        }
+        /* change css style depending on screen size  */
+        /* @media screen and (max-width: 600px) {
+            button {background-color: orangered;} 
+        } 
+        @media screen and (max-width: 767px) {
+            button {background-color: lightgray;}
+        } */
+        div {
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: rgb(184, 145, 221);
+            height: 70px;
+            padding: 1rem;
+        }
+
+        .content {
+            background-color: aqua;
+            padding: 1rem;
+        }
+        @media screen and (max-width: 767px){
+            .header {
+            background-color: rgb(184, 145, 221);
+            height: 70px;
+            padding: 1rem;
+            position: fixed;
+            width: 30px;
+            opacity: 1;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        this is the header 
+    </div>
+    <div class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, doloribus harum esse exercitationem consectetur amet eos, voluptas facere quasi similique possimus, natus explicabo voluptates eum optio assumenda. Rem, pariatur aspernatur.
+    </div>
+</body>
+</html>
