@@ -1,0 +1,29 @@
+<body>
+
+    <input type="text" id='myInput'/>
+    <button onclick="btn()">Blah Blah</button>
+    <br>
+    <p id="output"></p>
+    
+    <script>
+        function doSomething() {
+            myInput.value = 10; 
+        } 
+
+        doSomething(); //run on page load 
+
+        function btn() {
+            let square = (myInput.value)*(myInput.value);
+            output.innerHTML = square; 
+            if (square > 100){
+                output.style.color = 'orange'; 
+                output.innerHTML += ' (TYPE B)';
+            }
+            else if (square >= 0 && square <= 100){
+                output.style.color = 'green'; 
+                output.innerHTML += ' (TYPE A)';
+            }   
+        }
+        
+    </script>
+</body>
