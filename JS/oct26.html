@@ -1,19 +1,27 @@
-<body>
 
-    <input type="text" id='myInput'/>
+<!-- in-class lab: 
+1. on page load, input box should have 10
+2. on button click, its square should be calculated and displayed in a div next to it 
+3. if the output is > 100, then the font color will be red 
+    if 0 < output < 100  -- color: green 
+ -->
+
+<body>
+    <input type="number" id='myInput'/>
     <button onclick="btn()">Blah Blah</button>
     <br>
     <p id="output"></p>
     
     <script>
         function doSomething() {
-            myInput.value = 10; 
+            myInput.value = 10;  //set input value 
         } 
 
         doSomething(); //run on page load 
 
         function btn() {
             let square = (myInput.value)*(myInput.value);
+            // if (isNaN(square)) 
             output.innerHTML = square; 
             if (square > 100){
                 output.style.color = 'orange'; 
