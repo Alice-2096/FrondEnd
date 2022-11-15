@@ -12,7 +12,9 @@ var user = {
 };
 //object properties are represented by key-value pairs
 
+//use dot property accessor to access valid identifiers
 document.write(user.name);
+//square brackets property accessor to access string denoting the property name
 document.write(user['likes dancing']);
 
 //add property to the predefined object

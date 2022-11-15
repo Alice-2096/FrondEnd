@@ -12,6 +12,16 @@
       let collection = [1, 2, 3, 4];
       let [first, second] = collection; //1, 2
       let [fst, snd, third, fourth] = collection; //1,2,3,4
+      //object destructuring
+      const hero = {
+        name: 'Batman',
+      };
+      const { name } = hero;
+      name; // 'Batman'
+
+      //alias property name
+      const { name: heroName } = hero;
+      heroName; // 'Batman'
 
       //spread operator
       let newCollection = [45, 46, 47];
@@ -34,8 +44,6 @@
 
       console.log(sum(1, 2, 3, 4));
       // expected output: 10
-
-      //Modules -- files/container of some code
     </script>
   </body>
 </html>
