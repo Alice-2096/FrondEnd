@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //destructuring
+      let collection = [1, 2, 3, 4];
+      let [first, second] = collection; //1, 2
+      let [fst, snd, third, fourth] = collection; //1,2,3,4
+
+      //spread operator
+      let newCollection = [45, 46, 47];
+      let container = [1, ...newCollection, 100];
+      //1, 45, 46, 47, 100
+      console.log(container);
+
+      //rest operator
+      function sum(...theArgs) {
+        let total = 0;
+        // Note: '...theArgs' will be considered as an array
+        for (const iter of theArgs) {
+          total += iter;
+        }
+        return total;
+      }
+
+      console.log(sum(1, 2, 3));
+      // expected output: 6
+
+      console.log(sum(1, 2, 3, 4));
+      // expected output: 10
+
+      //Modules -- files/container of some code
+    </script>
+  </body>
+</html>
