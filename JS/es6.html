@@ -19,6 +19,22 @@
       const { name } = hero;
       name; // 'Batman'
 
+      let person = {
+        name: 'Alice',
+        email: '123@yahoo.com',
+        gender: 'female',
+      };
+      let { gender } = person;
+      console.log(gender); // Alice
+
+      //destructuring of object in function parameter
+      function displayData({ name, email, gender }) {
+        console.log(name);
+        console.log(email);
+        console.log(gender);
+      }
+
+      displayData(person); //Alice, 123@yahoo.com, female
       //alias property name
       const { name: heroName } = hero;
       heroName; // 'Batman'
@@ -28,6 +44,10 @@
       let container = [1, ...newCollection, 100];
       //1, 45, 46, 47, 100
       console.log(container);
+
+      //use spread to clone an array
+      let newArray = [...container];
+      console.log(newArray);
 
       //rest operator
       function sum(...theArgs) {
